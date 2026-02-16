@@ -355,7 +355,7 @@ body.dark nav {
     z-index: 2000;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     background: rgba(0,0,0,0.6);  /* semi-transparent overlay */
     display: flex;
@@ -372,7 +372,7 @@ body.dark nav {
     border-radius: 12px;
     padding: 30px;
     width: 90%;
-    max-width: 1200px;             /* increase width for desktop */
+    max-width: 1000px;             /* increase width for desktop */
     max-height: 90vh;              /* keep modal height within viewport */
     overflow-y: auto;              /* scroll inside modal if content exceeds height */
     box-shadow: 0 10px 35px rgba(0,0,0,0.3);
@@ -832,4 +832,5 @@ video {
     overflow-y: auto;
     border-radius: 10px;
 }
+
 

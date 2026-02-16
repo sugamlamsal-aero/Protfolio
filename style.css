@@ -348,27 +348,54 @@ body.dark nav {
 }
 
 /* MODAL */
+/* Modal Overlay */
 .modal {
     display: none;
     position: fixed;
     z-index: 2000;
     left: 0;
     top: 0;
-    width: 120%;
+    width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.6);  /* semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;               /* scroll if content is tall */
 }
 
+/* Modal Content */
 .modal-content {
-    background: #fff;          /* white background */
-    margin: 3% auto;           /* center vertically & horizontally */
-    padding: 30px;
-    width: 100%;                /* almost full width on large screens */
-    max-width: 1400px;         /* max width to prevent overflow */
-    max-height: 90vh;          /* fit nicely in viewport */
-    overflow-y: auto;          /* scroll if content is taller */
+    background: var(--bg);          /* changes with theme */
+    color: var(--text);             /* text changes with theme */
     border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    padding: 30px;
+    width: 90%;
+    max-width: 1200px;             /* increase width for desktop */
+    max-height: 90vh;              /* keep modal height within viewport */
+    overflow-y: auto;              /* scroll inside modal if content exceeds height */
+    box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+/* Scrollbar Styling */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.05);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: darken(var(--accent), 10%);
 }
 
 /* MOBILE ADAPTATION */
@@ -624,28 +651,6 @@ body.dark nav {
     }
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.7);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 500px;
-    width: 80%;
-    text-align: center;
-}
-
 .close {
     position: absolute;
     right: 20px;
@@ -805,3 +810,26 @@ video {
     display: block;
     margin: 0 auto;      /* center image if smaller than container */
 }
+
+#cvModal {
+    display: none; /* Important: must be hidden by default */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+#cvModal .modal-content {
+    background: var(--bg);
+    padding: 30px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+

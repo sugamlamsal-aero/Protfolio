@@ -85,25 +85,77 @@ body.dark {
 /* NAVBAR */
 nav {
     position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+
+    padding: 12px 30px;
+    border-radius: 50px;
+
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 15px 30px;
-    background: var(--bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+
     z-index: 1000;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
-.logo { font-weight: bold; font-size: 18px; }
-.nav-right { display: flex; align-items: center; gap: 15px; }
-.nav-links { display: flex; gap: 15px; }
-.nav-links a { text-decoration: none; color: var(--text); font-weight: 500; padding-bottom: 4px; transition: 0.4s; }
-.nav-links a.active { color: var(--accent); border-bottom: 2px solid var(--accent); }
-.theme-btn { border: none; background: var(--card); padding: 6px 10px; border-radius: 20px; cursor: pointer; font-size: 16px; flex-shrink: 0; }
-.theme-btn:hover { transform: scale(1.1); }
+
+/* CENTER ITEMS */
+.nav-center {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+/* LINKS */
+.nav-item {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav:hover {
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    transform: translateX(-50%) scale(1.02);
+}
+
+.nav-item:hover {
+    color: #0077ff;
+}
+
+/* ACTIVE */
+.nav-item.active {
+    color: #0077ff;
+}
+
+/* THEME BUTTON */
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* HAMBURGER */
+.hamburger {
+    position: absolute;
+    right: 20px;
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    margin: 3px 0;
+}
 
 /* REVEAL ANIMATIONS */
 .reveal { opacity: 0; transform: translateY(40px); transition: all 0.6s ease; }
@@ -135,6 +187,9 @@ body.dark #home,
 body.dark #projects,
 body.dark #experience,
 body.dark #contact { background: var(--bg); --section-accent: var(--accent); }
+body.dark nav {
+    background: rgba(15, 23, 42, 0.7);
+}
 
 /* HAMBURGER */
 .hamburger {
@@ -299,19 +354,38 @@ body.dark #contact { background: var(--bg); --section-accent: var(--accent); }
     z-index: 2000;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 120%;
     height: 100%;
     background: rgba(0,0,0,0.6);
 }
 
 .modal-content {
-    background: var(--bg);
-    margin: 5% auto;
+    background: #fff;          /* white background */
+    margin: 3% auto;           /* center vertically & horizontally */
     padding: 30px;
-    width: 80%;
-    max-height: 80vh;
-    overflow-y: auto;
-    border-radius: 10px;
+    width: 100%;                /* almost full width on large screens */
+    max-width: 1400px;         /* max width to prevent overflow */
+    max-height: 90vh;          /* fit nicely in viewport */
+    overflow-y: auto;          /* scroll if content is taller */
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* MOBILE ADAPTATION */
+@media screen and (max-width: 1024px) {
+    .modal-content {
+        width: 95%;            /* smaller width for tablets */
+        padding: 25px;
+        max-height: 90vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;            /* full width on mobile */
+        padding: 20px;
+        max-height: 90vh;
+    }
 }
 
 .close-btn {
@@ -467,4 +541,267 @@ body.dark #contact { background: var(--bg); --section-accent: var(--accent); }
     color: white;
 }
 
+/* PROJECTS SECTION */
+.projects {
+    width: 100%;        /* full width */
+    max-width: none;    /* remove restriction */
+    margin: 0 auto;
+    padding-top: 120px;
+    padding-bottom: 100px;
+}
 
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+/* Alternate layout */
+.project-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.project-image img {
+    width: 100%;
+    max-width: 400px;   /* optional max size */
+    height: auto;
+}
+
+.project-content {
+  flex: 1;
+}
+
+.project-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.project-content p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+.project-content button {
+  padding: 10px 20px;
+  border: none;
+  background: #0077ff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.project-content button:hover {
+  background: #005edb;
+}
+
+@media (max-width: 768px) {
+
+    .nav-center {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: var(--bg);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    nav {
+        width: 90%;
+        padding: 10px 15px;
+    }
+
+    .nav-center.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 80%;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.video-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.video-container iframe {
+    border-radius: 10px;
+}
+
+.video-container {
+    margin-top: 20px;
+}
+
+video {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* SLIDER */
+.slider {
+    position: relative;
+    max-width: 100%;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.slider img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+/* Buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.prev:hover, .next:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* SLIDER */
+.slider {
+    position: relative;
+    width: 400px;
+}
+
+.slider img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+/* Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 22px;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.slider-btn:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.image-slider {
+    position: relative;
+    max-width: 700px; /* limits the width */
+    margin: 20px auto; /* centers the slider */
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.image-slider img {
+    width: 100%;  /* makes image fit container */
+    height: auto; /* keeps aspect ratio */
+    display: block;
+}
+
+.image-slider .prev,
+.image-slider .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.image-slider .prev { left: 10px; }
+.image-slider .next { right: 10px; }
+
+.image-slider .prev:hover,
+.image-slider .next:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+/* UNIFORM PROJECT IMAGE / SLIDER SIZE (fit images without cropping) */
+.project-image,
+.image-slider {
+    width: 400px;       /* same width for all project images */
+    height: 250px;      /* same height for all project images */
+    overflow: hidden;
+    border-radius: 12px;
+    flex-shrink: 0;     /* prevents shrinking in flex layouts */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    background: #ffffff; /* optional: placeholder background for empty space */
+}
+
+.project-image img,
+.image-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* compress image to fit inside container */
+    display: block;
+    margin: 0 auto;      /* center image if smaller than container */
+}

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<div class="modal" id="projectModal">
+<div id="projectModal" class="modal">
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <div id="modalBody"></div>
@@ -23,20 +23,20 @@
 
 <!-- NAVBAR -->
 <nav>
-    <div class="logo">Sugam Lamsal | Aerospace Engineer</div>
+    <div class="nav-center">
+        <a href="#home" class="nav-item active">Home</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#experience" class="nav-item">Experience</a>
+
+        <!-- Theme Toggle -->
+        <button id="themeToggle" class="theme-btn">🌙</button>
+    </div>
+
+    <!-- Hamburger (for mobile) -->
     <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
-    </div>
-    <div class="nav-right">
-        <div class="nav-links">
-            <a href="#home" class="nav-item active">Home</a>
-            <a href="#projects" class="nav-item">Projects</a>
-            <a href="#experience" class="nav-item">Experience</a>
-        </div>
-
-        <button id="themeToggle" class="theme-btn">🌙</button>
     </div>
 </nav>
 
@@ -90,27 +90,65 @@
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="section reveal">
-    <h2>Projects</h2>
+<section id="projects" class="section projects">
+  <h2>Projects</h2>
 
-    <div class="project-grid">
+<!-- Final Year Project -->
+<div class="project-row">
+<div class="image-slider">
+    <img id="fyp-slider" src="images/fyp1.jpg" alt="FYP Slide">
+    <button class="prev" onclick="changeSlide('fyp', -1)">&#10094;</button>
+    <button class="next" onclick="changeSlide('fyp', 1)">&#10095;</button>
+</div>
 
-        <div class="project-card" onclick="openProject('trishul')">
-            <h3>Project Trishul</h3>
-            <p>Solid Propellant Rocket Development</p>
-        </div>
+    <div class="project-content">
+        <h3>Integrated Control System for Active Fin-Controlled Rocket Stabilization and Guidance</h3>
 
-        <div class="project-card" onclick="openProject('sploosh')">
-            <h3>SPLOOSH</h3>
-            <p>Amphibian Aircraft Design</p>
-        </div>
+        <p>
+            Designed and implemented a real-time active fin control system using PID control and IMU sensor fusion 
+            for rocket stabilization and guidance. Developed mathematical models and optimized control strategies 
+            to ensure stability during flight.
+        </p>
 
-        <div class="project-card" onclick="openProject('rocket-control')">
-            <h3>Active Fin-Controlled Rocket</h3>
-            <p>Integrated Control & Stabilization</p>
-        </div>
+        <p>
+            Built and tested a complete rocket system including custom PCB, servo-actuated fins, and multiple 
+            propulsion configurations. Successfully validated performance through wind tunnel testing and real 
+            flight experiments.
+        </p>
 
+        <button onclick="openProject('fyp')">View Details</button>
     </div>
+</div>
+
+  <!-- Project 1 -->
+  <div class="project-row reverse">
+    <div class="project-image">
+      <img src="images/project1.jpg" alt="Project Trishul">
+    </div>
+    <div class="project-content">
+      <h3>Project Trishul</h3>
+      <p>
+        Designed, developed, and launched solid-propellant rockets reaching apogees of 2.6 km and 1.8 km. 
+        Conducted static thrust testing, aerodynamic optimization, and full system validation.
+      </p>
+      <button onclick="openProject('trishul')">View Details</button>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="project-row">
+    <div class="project-image">
+      <img src="images/project2.jpg" alt="SPLOOSH">
+    </div>
+    <div class="project-content">
+      <h3>SPLOOSH - Amphibian Aircraft</h3>
+      <p>
+        Designed a 19-seater amphibian aircraft based on the DHC-6 Twin Otter using XFLR5, OpenVSP, MATLAB and X-Plane for aerodynamic analysis and simulation.
+      </p>
+      <button onclick="openProject('sploosh')">View Details</button>
+    </div>
+  </div>
+
 </section>
 
 <!-- EXPERIENCE -->

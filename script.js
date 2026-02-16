@@ -161,7 +161,7 @@ if (project === "fyp") {
 
         <!-- 🎥 VIDEO -->
         <div class="video-container">
-            <video controls width="100%">
+            <video controls width="100%" muted autoplay>
                 <source src="files/fyp-video.mp4" type="video/mp4">
             </video>
         </div>
@@ -308,3 +308,4 @@ window.addEventListener('click', (event) => {
         }
     });
 });
+

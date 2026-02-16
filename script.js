@@ -104,11 +104,7 @@ function openProject(project) {
             <p>Designed and launched two solid-propellant rockets reaching 2.6km and 1.8km apogee.</p>
 
             <h3>Report</h3>
-            <a href="files/trishul-report.pdf" target="_blank">View Report (PDF)</a>
-
-            <h3>Images</h3>
-            <img src="images/trishul1.jpg" width="100%">
-            <img src="images/trishul2.jpg" width="100%">
+            <a href="files/trishul-report.pdf" target="_blank" class="modal-btn">View Report (PDF)</a>
 
             <h3>Video</h3>
             <iframe width="100%" height="315"
@@ -123,20 +119,50 @@ function openProject(project) {
             <h2>SPLOOSH Amphibian Aircraft</h2>
             <p>19-seater amphibian aircraft designed using XFLR5, OpenVSP, MATLAB, X-Plane.</p>
 
-            <a href="files/sploosh-report.pdf" target="_blank">View Design Report</a>
+            <a href="files/sploosh-report.pdf" target="_blank" class="modal-btn">View Poster</a>
         `;
     }
 
-    if (project === "rocket-control") {
-        body.innerHTML = `
-            <h2>Active Fin-Controlled Rocket</h2>
-            <p>PID-based real-time control system with IMU feedback and servo-actuated fins.</p>
+if (project === "fyp") {
+    body.innerHTML = `
+        <h2>Active Fin-Controlled Rocket</h2>
 
-            <a href="files/control-system-paper.pdf" target="_blank">Conference Paper</a>
-        `;
-    }
+        <p>
+        Final year project focused on developing an integrated control system 
+        for rocket stabilization and guidance using active fins.
+        </p>
 
-    modal.style.display = "block";
+        <ul>
+            <li>PID-based control system</li>
+            <li>IMU-based orientation tracking</li>
+            <li>Kalman Filter for sensor fusion</li>
+            <li>Teensy 4.1 for real-time control</li>
+            <li>Flight-tested system</li>
+        </ul>
+
+        <div class="modal-buttons">
+            <a href="files/control-system-paper.pdf" target="_blank" class="modal-btn">
+                View Report
+            </a>
+        </div>
+
+        <!-- 🎥 VIDEO -->
+        <div class="video-container">
+            <video controls width="100%">
+                <source src="files/fyp-video.mp4" type="video/mp4">
+            </video>
+        </div>
+    `;
+
+    initSlider([
+        "images/fyp1.jpg",
+        "images/fyp2.jpg",
+        "images/fyp3.jpg"
+    ]);
+}
+
+
+    modal.style.display = "flex";
 }
 
 function closeModal() {
@@ -193,5 +219,64 @@ function openCertificate(company) {
         `;
     }
 
-    modal.style.display = "block";
+    modal.style.display = "flex";
 }
+
+function initSlider(images) {
+    let index = 0;
+
+    const img = document.getElementById("slider-image");
+    const prev = document.querySelector(".prev");
+    const next = document.querySelector(".next");
+
+    if (!img || !prev || !next) return;
+
+    prev.onclick = () => {
+        index = (index - 1 + images.length) % images.length;
+        img.src = images[index];
+    };
+
+    next.onclick = () => {
+        index = (index + 1) % images.length;
+        img.src = images[index];
+    };
+}
+// SINGLE sliders object
+const sliders = {
+    fyp: {
+        images: ["images/fyp1.jpg", "images/fyp2.jpg", "images/fyp3.jpg"],
+        index: 0,
+        interval: null
+    }
+};
+
+function changeSlide(project, direction) {
+    const slider = sliders[project];
+    const img = document.getElementById(project + "-slider");
+    if (!img) return;
+
+    slider.index += direction;
+    if (slider.index < 0) slider.index = slider.images.length - 1;
+    if (slider.index >= slider.images.length) slider.index = 0;
+
+    img.src = slider.images[slider.index];
+}
+
+function startAutoSlider(project, delay = 3000) {
+    const slider = sliders[project];
+    const img = document.getElementById(project + "-slider");
+    if (!img) return;
+
+    if (slider.interval) clearInterval(slider.interval);
+
+    slider.interval = setInterval(() => {
+        slider.index++;
+        if (slider.index >= slider.images.length) slider.index = 0;
+        img.src = slider.images[slider.index];
+    }, delay);
+}
+
+window.addEventListener("load", () => {
+    startAutoSlider("fyp", 3000);
+});
+

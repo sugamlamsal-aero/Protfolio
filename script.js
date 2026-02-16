@@ -1,19 +1,19 @@
 // THEME TOGGLE
-const toggleButton = document.getElementById("themeToggle");
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    toggleButton.textContent = "☀️";
-}
-toggleButton.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    if (document.body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
+    const toggleButton = document.getElementById("themeToggle");
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
         toggleButton.textContent = "☀️";
-    } else {
-        localStorage.setItem("theme", "light");
-        toggleButton.textContent = "🌙";
     }
-});
+    toggleButton.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        if (document.body.classList.contains("dark")) {
+            localStorage.setItem("theme", "dark");
+            toggleButton.textContent = "☀️";
+        } else {
+            localStorage.setItem("theme", "light");
+            toggleButton.textContent = "🌙";
+        }
+    });
 
 // NAV ACTIVE SWITCH WITH SMOOTH ACCENT
 const sections = document.querySelectorAll(".section");
@@ -56,11 +56,24 @@ window.addEventListener("scroll", revealOnScroll);
 // CV MODAL
 const cvButton = document.getElementById("cvButton");
 const cvModal = document.getElementById("cvModal");
-const cvClose = document.querySelector(".modal .close");
+const cvClose = cvModal.querySelector(".close"); // specifically inside cvModal
 
-cvButton.addEventListener("click", () => cvModal.style.display = "block");
-cvClose.addEventListener("click", () => cvModal.style.display = "none");
-window.addEventListener("click", e => { if (e.target === cvModal) cvModal.style.display = "none"; });
+// Open CV modal
+cvButton.addEventListener("click", () => {
+    cvModal.style.display = "flex"; // use flex if modal uses flex
+});
+
+// Close CV modal when clicking the close button
+cvClose.addEventListener("click", () => {
+    cvModal.style.display = "none";
+});
+
+// Close CV modal when clicking outside the modal content
+window.addEventListener("click", e => {
+    if (e.target === cvModal) {
+        cvModal.style.display = "none";
+    }
+});
 
 // HAMBURGER MENU
 const hamburger = document.getElementById("hamburger");
@@ -280,3 +293,18 @@ window.addEventListener("load", () => {
     startAutoSlider("fyp", 3000);
 });
 
+window.addEventListener("load", () => {
+    document.querySelectorAll(".modal").forEach(modal => {
+        modal.style.display = "none";
+    });
+});
+
+const modals = document.querySelectorAll('.modal');
+
+window.addEventListener('click', (event) => {
+    modals.forEach(modal => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+});

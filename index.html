@@ -19,6 +19,14 @@
     </div>
 </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".modal").forEach(modal => {
+                modal.style.display = "none";
+            });
+        });
+    </script>
+
 <body>
 
 <!-- NAVBAR -->
@@ -203,6 +211,7 @@
 </section>
 
 <!-- CV MODAL -->
+
 <div id="cvModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>

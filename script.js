@@ -119,11 +119,13 @@ function openProject(project) {
             <h3>Report</h3>
             <a href="files/trishul-report.pdf" target="_blank" class="modal-btn">View Report (PDF)</a>
 
-            <h3>Video</h3>
-            <iframe width="100%" height="315"
-                src="https://www.youtube.com/embed/YOUR_VIDEO_LINK"
-                frameborder="0" allowfullscreen>
-            </iframe>
+        <div class="modal-buttons">
+            <a href="https://www.youtube.com/watch?v=Js4Dl5qeV8o" 
+               target="_blank" 
+               class="modal-btn">
+                🎥 Watch on YouTube
+            </a>
+        </div>
         `;
     }
 
@@ -162,7 +164,7 @@ if (project === "fyp") {
         <!-- 🎥 VIDEO -->
         <div class="video-container">
             <video controls width="100%" muted autoplay>
-                <source src="files/fyp-video.mp4" type="video/mp4">
+                <source src="files/fyp-video.mp4" muted type="video/mp4" >
             </video>
         </div>
     `;
@@ -308,4 +310,3 @@ window.addEventListener('click', (event) => {
         }
     });
 });
-

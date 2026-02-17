@@ -156,10 +156,12 @@ if (project === "fyp") {
         </ul>
 
         <div class="modal-buttons">
-            <a href="files/control-system-paper.pdf" target="_blank" class="modal-btn">
-                View Report
-            </a>
-        </div>
+           <a href="https://drive.google.com/file/d/1egma9T06DVxSgfrHLYx5bJ3HOnXZ9QaW/view" 
+             target="_blank" 
+             class="modal-btn">
+            📄 View Report
+           </a>
+       </div>
 
         <!-- 🎥 VIDEO -->
         <div class="video-container">

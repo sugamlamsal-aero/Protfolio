@@ -1,19 +1,19 @@
 // THEME TOGGLE
-    const toggleButton = document.getElementById("themeToggle");
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark");
+const toggleButton = document.getElementById("themeToggle");
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    toggleButton.textContent = "☀️";
+}
+toggleButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
         toggleButton.textContent = "☀️";
+    } else {
+        localStorage.setItem("theme", "light");
+        toggleButton.textContent = "🌙";
     }
-    toggleButton.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-        if (document.body.classList.contains("dark")) {
-            localStorage.setItem("theme", "dark");
-            toggleButton.textContent = "☀️";
-        } else {
-            localStorage.setItem("theme", "light");
-            toggleButton.textContent = "🌙";
-        }
-    });
+});
 
 // NAV ACTIVE SWITCH WITH SMOOTH ACCENT
 const sections = document.querySelectorAll(".section");
@@ -77,24 +77,22 @@ window.addEventListener("click", e => {
 
 // HAMBURGER MENU
 const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("navMenu");
+const navContainerLinks = document.querySelector(".nav-links");
 
 hamburger.addEventListener("click", () => {
-    navMenu.querySelector(".nav-links").classList.toggle("active");
-
-    // Animate hamburger icon
+    navContainerLinks.classList.toggle("active");
     hamburger.classList.toggle("open");
 });
 
 // Close menu on link click (mobile)
-document.querySelectorAll(".nav-links a").forEach(link => {
+navContainerLinks.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
-        if (navMenu.querySelector(".nav-links").classList.contains("active")) {
-            navMenu.querySelector(".nav-links").classList.remove("active");
-            hamburger.classList.remove("open");
-        }
+        navContainerLinks.classList.remove("active");
+        hamburger.classList.remove("open");
     });
 });
+
+
 
 // Fade-in animation for hero bullets
 window.addEventListener("load", () => {
@@ -111,41 +109,10 @@ function openProject(project) {
     const modal = document.getElementById("projectModal");
     const body = document.getElementById("modalBody");
 
-    if (project === "trishul") {
-        body.innerHTML = `
-            <h2>Project Trishul</h2>
-            <p>Designed and launched two solid-propellant rockets reaching 2.6km and 1.8km apogee.</p>
-
-            <h3>Report</h3>
-            <a href="files/trishul-report.pdf" target="_blank" class="modal-btn">View Report (PDF)</a>
-
-        <div class="modal-buttons">
-            <a href="https://www.youtube.com/watch?v=Js4Dl5qeV8o" 
-               target="_blank" 
-               class="modal-btn">
-                🎥 Watch on YouTube
-            </a>
-        </div>
-        `;
-    }
-
-    if (project === "sploosh") {
-        body.innerHTML = `
-            <h2>SPLOOSH Amphibian Aircraft</h2>
-            <p>19-seater amphibian aircraft designed using XFLR5, OpenVSP, MATLAB, X-Plane.</p>
-
-            <a href="files/sploosh-report.pdf" target="_blank" class="modal-btn">View Poster</a>
-        `;
-    }
-
 if (project === "fyp") {
     body.innerHTML = `
         <h2>Active Fin-Controlled Rocket</h2>
-
-        <p>
-        Final year project focused on developing an integrated control system 
-        for rocket stabilization and guidance using active fins.
-        </p>
+        <p>Final year project focused on developing an integrated control system for rocket stabilization and guidance using active fins.</p>
 
         <ul>
             <li>PID-based control system</li>
@@ -155,32 +122,64 @@ if (project === "fyp") {
             <li>Flight-tested system</li>
         </ul>
 
-        <div class="modal-buttons">
+        <!-- CARD: Report & Poster -->
+        <div class="modal-card" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 10px; display: flex; gap: 10px; flex-wrap: wrap;">
            <a href="https://drive.google.com/file/d/1egma9T06DVxSgfrHLYx5bJ3HOnXZ9QaW/view" 
-             target="_blank" 
-             class="modal-btn">
-            📄 View Report
+              target="_blank" class="modal-btn">
+              📄 View Report
            </a>
-       </div>
+           <a href="files/fyp-poster.pdf" target="_blank" class="modal-btn secondary">
+              🖼 View Poster
+           </a>
+        </div>
 
-        <!-- 🎥 VIDEO -->
-        <div class="video-container">
+        <!-- CARD: Video -->
+        <div class="modal-card video-container" style="padding: 15px; border: 1px solid #ccc; border-radius: 10px;">
             <video controls width="100%" muted autoplay>
-                <source src="files/fyp-video.mp4" muted type="video/mp4" >
+                <source src="files/fyp-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
         </div>
     `;
+        initSlider([
+            "images/fyp1.jpg",
+            "images/fyp2.jpg",
+            "images/fyp3.jpg"
+        ]);
+    }
 
-    initSlider([
-        "images/fyp1.jpg",
-        "images/fyp2.jpg",
-        "images/fyp3.jpg"
-    ]);
-}
+    if (project === "trishul") {
+        body.innerHTML = `
+            <h2>Project Trishul</h2>
+            <p>Designed and launched two solid-propellant rockets reaching 2.6 km and 1.8 km apogee.</p>
 
+            <div class="modal-buttons">
+                <a href="files/trishul-report.pdf" target="_blank" class="modal-btn">
+                    📄 View Report
+                </a>
+                <a href="https://www.youtube.com/watch?v=Js4Dl5qeV8o" target="_blank" class="modal-btn secondary">
+                    🎥 Watch Video
+                </a>
+            </div>
+        `;
+    }
+
+    if (project === "sploosh") {
+        body.innerHTML = `
+            <h2>SPLOOSH Amphibian Aircraft</h2>
+            <p>19-seater amphibian aircraft designed using XFLR5, OpenVSP, MATLAB, X-Plane.</p>
+
+            <div class="modal-buttons">
+                <a href="files/sploosh-poster.pdf" target="_blank" class="modal-btn">
+                    🖼 View Poster
+                </a>
+            </div>
+        `;
+    }
 
     modal.style.display = "flex";
 }
+
 
 function closeModal() {
     document.getElementById("projectModal").style.display = "none";
@@ -193,13 +192,11 @@ function openCertificate(company) {
     if (company === "airbus") {
         body.innerHTML = `
             <h2>Airbus India Internship</h2>
-
             <div class="modal-buttons">
                 <a href="files/airbus-certificate.pdf" target="_blank" class="modal-btn">
                     View Certificate
                 </a>
             </div>
-
             <img src="images/airbus-certificate.jpg" width="100%">
         `;
     }
@@ -207,12 +204,10 @@ function openCertificate(company) {
     if (company === "iitb") {
         body.innerHTML = `
             <h2>IIT Bombay Research Internship</h2>
-
             <div class="modal-buttons">
                 <a href="files/iitb-certificate.pdf" target="_blank" class="modal-btn">
                     View Certificate
                 </a>
-
                 <a href="files/iitb-report.pdf" target="_blank" class="modal-btn secondary">
                     View Internship Report
                 </a>
@@ -223,12 +218,10 @@ function openCertificate(company) {
     if (company === "fossee") {
         body.innerHTML = `
             <h2>FOSSEE Project Internship</h2>
-
             <div class="modal-buttons">
                 <a href="files/fossee-certificate.pdf" target="_blank" class="modal-btn">
                     View Certificate
                 </a>
-
                 <a href="files/fossee-report.pdf" target="_blank" class="modal-btn secondary">
                     View Internship Report
                 </a>
@@ -238,6 +231,7 @@ function openCertificate(company) {
 
     modal.style.display = "flex";
 }
+
 
 function initSlider(images) {
     let index = 0;
@@ -310,5 +304,25 @@ window.addEventListener('click', (event) => {
         if (event.target === modal) {
             modal.style.display = "none";
         }
+    });
+});
+
+document.querySelectorAll('a.nav-item').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+
+        // Scroll to element with offset for fixed navbar
+        const offset = 80; // adjust this if navbar height changes
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = target.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
     });
 });

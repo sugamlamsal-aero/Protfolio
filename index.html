@@ -106,62 +106,65 @@
 <section id="projects" class="section projects">
   <h2>Projects</h2>
 
-<!-- Final Year Project -->
-<div class="project-row">
-<div class="image-slider">
-    <img id="fyp-slider" src="images/fyp1.jpg" alt="FYP Slide">
-    <button class="prev" onclick="changeSlide('fyp', -1)">&#10094;</button>
-    <button class="next" onclick="changeSlide('fyp', 1)">&#10095;</button>
-</div>
+  <div class="projects-wrapper">
 
-    <div class="project-content">
-        <h3>Integrated Control System for Active Fin-Controlled Rocket Stabilization and Guidance</h3>
+    <!-- Final Year Project -->
+    <div class="project-card">
+      <div class="project-row">
+        <div class="image-slider">
+          <img id="fyp-slider" src="images/fyp1.jpg" alt="FYP Slide">
+        </div>
 
-        <p>
+        <div class="project-content">
+          <h3>Integrated Control System for Active Fin-Controlled Rocket Stabilization and Guidance</h3>
+
+          <p>
             Designed and implemented a real-time active fin control system using PID control and IMU sensor fusion 
-            for rocket stabilization and guidance. Developed mathematical models and optimized control strategies 
-            to ensure stability during flight.
-        </p>
+            for rocket stabilization and guidance.
+          </p>
 
-        <p>
-            Built and tested a complete rocket system including custom PCB, servo-actuated fins, and multiple 
-            propulsion configurations. Successfully validated performance through wind tunnel testing and real 
-            flight experiments.
-        </p>
+          <button onclick="openProject('fyp')">View Details</button>
+        </div>
+      </div>
+    </div>
 
-        <button onclick="openProject('fyp')">View Details</button>
-    </div>
-</div>
+    <!-- Project Trishul -->
+    <div class="project-card">
+      <div class="project-row reverse">
+        <div class="project-image">
+          <img src="images/project1.jpg" alt="Project Trishul">
+        </div>
 
-  <!-- Project 1 -->
-  <div class="project-row reverse">
-    <div class="project-image">
-      <img src="images/project1.jpg" alt="Project Trishul">
+        <div class="project-content">
+          <h3>Project Trishul</h3>
+          <p>
+            Designed, developed, and launched solid-propellant rockets reaching apogees of 2.6 km and 1.8 km.
+          </p>
+
+          <button onclick="openProject('trishul')">View Details</button>
+        </div>
+      </div>
     </div>
-    <div class="project-content">
-      <h3>Project Trishul</h3>
-      <p>
-        Designed, developed, and launched solid-propellant rockets reaching apogees of 2.6 km and 1.8 km. 
-        Conducted static thrust testing, aerodynamic optimization, and full system validation.
-      </p>
-      <button onclick="openProject('trishul')">View Details</button>
+
+    <!-- SPLOOSH -->
+    <div class="project-card">
+      <div class="project-row">
+        <div class="project-image">
+          <img src="images/project2.jpg" alt="SPLOOSH">
+        </div>
+
+        <div class="project-content">
+          <h3>SPLOOSH - Amphibian Aircraft</h3>
+          <p>
+            Designed a 19-seater amphibian aircraft based on the DHC-6 Twin Otter using XFLR5, OpenVSP, MATLAB and X-Plane.
+          </p>
+
+          <button onclick="openProject('sploosh')">View Details</button>
+        </div>
+      </div>
     </div>
+
   </div>
-
-  <!-- Project 2 -->
-  <div class="project-row">
-    <div class="project-image">
-      <img src="images/project2.jpg" alt="SPLOOSH">
-    </div>
-    <div class="project-content">
-      <h3>SPLOOSH - Amphibian Aircraft</h3>
-      <p>
-        Designed a 19-seater amphibian aircraft based on the DHC-6 Twin Otter using XFLR5, OpenVSP, MATLAB and X-Plane for aerodynamic analysis and simulation.
-      </p>
-      <button onclick="openProject('sploosh')">View Details</button>
-    </div>
-  </div>
-
 </section>
 
 <!-- EXPERIENCE -->
@@ -190,7 +193,7 @@
                View Certificate
              </a>
 
-                <a href="files/iitb-report.pdf" target="_blank" class="report-btn">
+                <a href="files/iitb-report.pdf" target="_blank" class="cert-btn">
                     View Report
                 </a>
             </div>
@@ -206,7 +209,7 @@
                View Certificate
              </a>
 
-                <a href="files/fossee-report.pdf" target="_blank" class="report-btn">
+                <a href="files/fossee-report.pdf" target="_blank" class="cert-btn">
                     View Report
                 </a>
             </div>

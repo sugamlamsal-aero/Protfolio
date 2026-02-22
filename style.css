@@ -14,9 +14,9 @@ body {
 
 /* VARIABLES */
 :root {
-    --bg: #ffffff;
+    --bg: #f5f7fb;
     --text: #111111;
-    --accent: #0077ff;
+    --accent: linear-gradient(135deg, #0077ff, #00c6ff);
     --card: rgba(0,0,0,0.04);
 }
 
@@ -740,4 +740,157 @@ nav {
     }
 }
 
+/* PROJECTS WRAPPER */
+.projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* PROJECT CARD */
+.project-card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+    .project-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .projects {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .projects-wrapper {
+        width: 100%;
+    }
+
+    .project-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 20px 15px;
+        border-radius: 14px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .hero {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .hero-highlights {
+        width: 100%;
+        max-width: 100%;
+        margin: 15px 0;
+        padding: 18px 20px;
+        border-radius: 0;
+    }
+
+}
+
+/* Default (desktop stays same) */
+.experience-grid {
+    display: grid;
+    gap: 20px;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+
+    .experience-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns */
+        gap: 12px;
+        padding: 0 10px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .experience {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .experience-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 12px;
+        box-sizing: border-box;
+    }
+
+    .experience-card {
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+        border-radius: 12px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .section {
+        padding: 100px 10px 60px 10px; /* reduce side padding */
+    }
+
+}
+@media (max-width: 768px) {
+
+    .experience-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        width: 100%;
+    }
+
+    .experience-card {
+        width: 100%;
+        padding: 12px;
+    }
+
+}
+
+.project-card,
+.experience-card {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.btn.primary {
+    background: var(--accent);
+}
+
+.project-card:hover,
+.experience-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+nav {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0,0,0,0.05);
+}
 
